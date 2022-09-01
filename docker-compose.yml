@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+
+  script:
+    container_name: Fortris_API
+    build:
+      context: ./script/
+    ports:
+      - 8000:8000
