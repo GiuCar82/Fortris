@@ -67,6 +67,10 @@ async def unemployment(state: str):
     # dictionary "data".
     for row in rows:
         data.update({row.find('th').text: row.find_all('td')[0].text})
+    # Raise and exception if the race input value is not inside the allowed ones.
+    if state not in data.keys():
+        raise HTTPException(status_code=404, detail=f"Wrong State input value. The allowed States are: "
+                                                    f"{', '.join(data.keys())}")
     # Return the unemployment rate for the State passed through the API
     return {"rate": data[state]}
 
