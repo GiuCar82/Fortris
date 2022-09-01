@@ -1,10 +1,10 @@
 # Fortris integration API service
 
 ## Introduction
-This project is developed to answer the technical challenge of building an integration API service with five endpoints in python. 
+This project is developed to answer the technical challenge of building an integration API service in python with five endpoints. 
 
 ## Technologies
-The technologies and modules used are :
+Technologies and modules used:
 * python3.8
 * docker-compose
 * fastapi
