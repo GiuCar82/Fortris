@@ -19,12 +19,12 @@ async def root():
 @app.get("/life_expectancy/{sex}/{race}/{year}")
 async def life_expectancy(sex: str, race: str, year: int):
     """
-        An API to collect the life expectancy of the population for sex, race and year from data.cdc.gov
+        An API to collect the life expectancy of the population for sex, race and year from data.cdc.gov.
 
-    :param sex: Input sex
-    :param race: Input race
-    :param year: Input year
-    :return: Life expectancy
+    :param sex: Input sex.
+    :param race: Input race.
+    :param year: Input year.
+    :return: Life expectancy.
     """
     # Raise and exception if the sex input value is not inside the allowed ones.
     if sex not in ["Female", "Male", "Both Sexes"]:
@@ -47,10 +47,10 @@ async def life_expectancy(sex: str, race: str, year: int):
 @app.get("/unemployment/{state}")
 async def unemployment(state: str):
     """
-        An API to collect the unemployment rate for State from www.bls.gov
+        An API to collect the unemployment rate for State from www.bls.gov.
 
-    :param state: Input State (case sensitive)
-    :return: Unemployment rate
+    :param state: Input State (case sensitive).
+    :return: Unemployment rate.
     """
     # Initialize and empty dictionary to store the State along with the unemployment rate after the parsing of the HTML
     # table.
@@ -83,12 +83,12 @@ async def trends(phrase: str,
            # When not provided the default end_date is the current date.
            end_date: str = datetime.today().strftime('%d-%m-%Y')):
     """
-        An API to collect the trend for a phrase in Google Trends in a provided time frame.
+        An API to collect the total trend score for a phrase in Google Trends in a provided time frame.
 
-    :param phrase: Input phrase
-    :param start_date: Input start date. Format: %dd-%mm%-%YYYY
-    :param end_date: Input end date. Format: %dd-%mm%-%YYYY
-    :return:
+    :param phrase: Input phrase.
+    :param start_date: Input start date. Format: %dd-%mm%-%YYYY.
+    :param end_date: Input end date. Format: %dd-%mm%-%YYYY.
+    :return: Total interest score.
     """
     # Initialize a new pytrend
     pytrend = TrendReq()
@@ -119,7 +119,7 @@ async def trends(phrase: str,
 async def weather():
     """
 
-    An API to collect the historical weather for the last 7 days of the location where this client is connected
+    An API to collect the historical weather of the last 7 days for the location where the client is connected
     to the Internet.
 
     :return: Location information and historical daily weather of the location.
@@ -161,13 +161,13 @@ async def weather():
 @app.get("/trends_weather")
 async def trends_weather(phrase: str):
     """
-    An API to return the trends for a phrase in Google Trends and the weather data in the client location for the past 7
-    days.
+    An API to return the total trend score for a phrase in Google Trends along with the weather data, where the client
+    is connected to the Internet, for the last 7 days.
 
-    A combination of the third and fourth endpoint.
+    It is a combination of the third and fourth endpoints.
 
-    :param phrase:
-    :return:
+    :param phrase: Input phrase.
+    :return: API Output. Trend score plus the weather data.
     """
     # NOTE: Pytreds has a bug (or behaviour) for which does not return the trends of the first 4 days from the
     # current date.
@@ -196,7 +196,7 @@ async def trends_weather(phrase: str):
     # Prepare the API output
     api_output = []
     for k, v in historical_data_dict[phrase].items():
-        # Parse the date and insert it as key along with the trend
+        # Parse the date and insert it as key along with the trend score
         api_output.append({"date": k[:10], "interest": v})
 
     # WEATHER SECTION #
